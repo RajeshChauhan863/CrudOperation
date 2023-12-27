@@ -74,7 +74,7 @@
                 <div *ngIf="submitted && f['acceptTerms'].errors" class="invalid-feedback">Accept Ts & Cs is required</div>
             </div>
             <div class="text-center">
-                <button class="btn btn-primary me-2">Register</button>
+                <button class="btn btn-primary me-2" (click)="onRegister()">Register</button>
                 <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
             </div>
         </form>
@@ -84,11 +84,11 @@
 <!-- credits -->
 <div class="text-center">
     <p>
-        <a href="https://jasonwatmore.com/post/2022/11/18/angular-14-reactive-forms-validation-example" target="_blank">Angular 14 - Reactive Forms Validation Example</a>
+        <!-- <a href="https://jasonwatmore.com/post/2022/11/18/angular-14-reactive-forms-validation-example" target="_blank">Angular 14 - Reactive Forms Validation Example</a>
         |
         <a href="https://jasonwatmore.es/post/2022/11/18/angular-14-ejemplo-de-validacion-de-formularios-reactivos-reactive-forms" target="_blank">en Español</a>
     </p>
     <p>
-        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a> -->
     </p>
 </div>

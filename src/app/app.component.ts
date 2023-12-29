@@ -2,8 +2,12 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../app/register.service'
 import { user } from './models/user';
+import { NotificationService } from './notification.service';
 // import custom validator to validate that password and confirm password fields match
 import { MustMatch } from './_helpers';
+
+
+
 @Component({ selector: 'app-root', templateUrl: 'app.component.html' })
 export class AppComponent implements OnInit {
     registerForm!: FormGroup;
@@ -11,8 +15,10 @@ export class AppComponent implements OnInit {
     
     
     userInfo=new user();
-
-    constructor(private formBuilder: FormBuilder,private registerService:RegisterService) { }
+   
+    constructor(private formBuilder: FormBuilder,private registerService:RegisterService,private notificationService:NotificationService) {
+        
+     }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
@@ -28,6 +34,8 @@ export class AppComponent implements OnInit {
         }, {
             validators: MustMatch('password', 'confirmPassword')
         });
+
+     
     }
 
     // convenience getter for easy access to form fields
@@ -49,7 +57,7 @@ export class AppComponent implements OnInit {
 
     try
     {
-   console.log(this.registerForm.value); debugger;
+
    this.userInfo.title=this.registerForm.value['title'];
    this.userInfo.firstName=this.registerForm.value['firstName']
    this.userInfo.lastName=this .registerForm.value['lastName']
@@ -57,6 +65,7 @@ export class AppComponent implements OnInit {
    this.userInfo.email=this.registerForm.value['email'];
    this.userInfo.password=this.registerForm.value['password'];
    this.registerService.register(this.userInfo);
+   this.notificationService.showSuccess("Data added successfully","Departmental Store")
     //     this.http.post<any[]>(`${this.apiUrl}/`,this.userInfo);
     }
     catch(ex)

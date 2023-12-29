@@ -1,15 +1,41 @@
 import { Injectable } from '@angular/core';
 import { user } from './models/user';
 import { HttpClient,HttpHeaders  } from '@angular/common/http';
-import { Observable,Subscriber } from 'rxjs';
+import { Observable,Subscriber, catchError, throwError,Subject } from 'rxjs';
+export interface userModel{
+  id:number;
+  title:string;
+  firstName:string;
+  lastName:string;
+  dob:Date;
+  email:string;
+  passowrd:string;
+  termsandcondition:string;
+  action:string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  apiUrl = 'https://localhost:7147/api/user/addUser';
+  apiUrl = 'https://localhost:7147/api/user';
 
-  constructor(private http:HttpClient) { }
 
+  private fillAllFilledSubject : Subject<userModel>;
+
+  constructor(private http:HttpClient) {
+      this.fillAllFilledSubject=new Subject<userModel>();
+
+   }
+
+   togglUser(opening: userModel): void {
+    this.fillAllFilledSubject.next(opening);
+}
+onUserToggle(): Observable<userModel> {
+  return this.fillAllFilledSubject;
+}
+
+  
   register(data:user )
   {
 
@@ -33,7 +59,7 @@ export class RegisterService {
           console.log('userinfo');
           console.log(JSON.stringify(userInfo));
     
-        this.http.post<user>(`${this.apiUrl}/`,userInfo,{headers:headers}).subscribe(
+        this.http.post<user>(`${this.apiUrl}/addUser`,userInfo,{headers:headers}).subscribe(
           (response) => {
             console.log('Response:', response);
           },
@@ -46,8 +72,12 @@ export class RegisterService {
    {
       throw ex;
    }
+  }
 
+  getUsers()
+  {
 
+    return this.http.get<any[]>(`${this.apiUrl}/getUsers`).pipe(catchError((error:any)=>{return throwError(error)}));
 
   }
 

@@ -5,28 +5,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { HttpClientModule }  from '@angular/common/http';
-import { ListUserComponent } from './users/list-user/list-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrModule } from 'ngx-toastr';
-
-
+import { RegisterService } from './register.service';
+import { NotificationService } from './notification.service';
+import { UserModule } from './users/user.module';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
-    ListUserComponent
   ],
   imports: [
     BrowserModule,
+    //CommonModule,
     FormsModule,
-    HttpClientModule,
+   // UserModule,
+    //;HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule,
-    MatTableModule,
+     AppRoutingModule,
+    // MatTableModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    // ToastrModule.forRoot()
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

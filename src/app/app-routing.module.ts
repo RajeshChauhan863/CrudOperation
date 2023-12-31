@@ -5,7 +5,8 @@ import { ListUserComponent } from './users/list-user/list-user.component';
 export const routes: Routes = [
 
 { path: '', component: AppComponent },
-{ path: 'user', component: ListUserComponent }];
+{     path:'users',
+    loadChildren:()=> import('./users/user.module').then(m=> m.UserModule)}]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,19 +1,20 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from '../register.service'
-import { user } from '../models/user';
-import { NotificationService } from '../notification.service';
+import { RegisterService } from './../../register.service'
+
+import { user } from '../../models/user';
+import { NotificationService } from './../../notification.service';
 // import custom validator to validate that password and confirm password fields match
-import { MustMatch } from '../_helpers';
+import { MustMatch } from './../../_helpers';
 import { ActivatedRoute } from '@angular/router'
 @Component({
-    selector: 'app-user',
-    templateUrl: './user.component.html',
-    styleUrls: ['./user.component.css']
+    selector: 'app-edit-user',
+    templateUrl: './edit-user.component.html',
+    styleUrls: ['./edit-user.component.css']
   })
 
-export class UserComponent implements OnInit  {
+export class EditUserComponent implements OnInit  {
     registerForm!: FormGroup;
     submitted = false;
     id:any;

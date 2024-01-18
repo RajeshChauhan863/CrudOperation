@@ -12,11 +12,13 @@ import { NotificationService } from '../notification.service';
 import { UserComponent } from './user.component';
 import { UsersRoutingModule } from './user-routing.module';
 import { ToastrService } from 'ngx-toastr';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
     ListUserComponent,
-    UserComponent
+    UserComponent,
+    EditUserComponent
   ],
   imports: [
     // BrowserModule,
